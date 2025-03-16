@@ -16,8 +16,6 @@ class Gform():
         response = requests.post(url, json=payload, headers=headers, timeout=180)
         
         if response.status_code == 200:
-            print("Google Form создана:", response.text)
             return response.text
         else:
-            print("Ошибка сервера:", response.text)
-            return response.text
+            return 0
