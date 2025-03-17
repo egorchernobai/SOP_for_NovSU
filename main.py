@@ -4,7 +4,27 @@ import json
 from PyQt6.QtCore import Qt
 import create_gform
 import webbrowser
+from PyQt6.QtCore import QThread, pyqtSignal
+import asyncio
+from parser_csv import parser
 
+class GFormWorker(QThread):
+    finished = pyqtSignal(str)  # Сигнал с URL формы или сообщением об ошибке
+
+    def run(self):
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        result = loop.run_until_complete(self.create_form())
+        self.finished.emit(result)
+
+    async def create_form(self):
+        with open("settings.json", "r", encoding="utf-8") as settings_file:
+            data = json.load(settings_file)
+
+        return create_gform.Gform.create_google_form(
+            data["Url"], data["Name_form"], data["Desciption_form"],
+            data["Subjects"], data["Questions_for_subject"], data["Questions_for_teachers"]
+        )
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -75,6 +95,8 @@ class MainWindow(QMainWindow):
         self.ui.variants_for_teacher.textChanged.connect(self.change_otv_teacher_form)
 
         self.ui.finish_button.clicked.connect(self.start_creating_gform)
+
+
 
     def change_url(self):
         self.data["Url"] = self.ui.url_script.text()
@@ -223,38 +245,37 @@ class MainWindow(QMainWindow):
                 json.dump(self.data, settings_file_write, ensure_ascii=False)
         
     def start_creating_gform(self):
-        with open("settings.json", "r", encoding="utf-8") as settings_file:
-            data = json.load(settings_file)
+        """Запускает создание Google Forms в отдельном потоке."""
+        self.ui.statusBar.showMessage("Создание формы...", 180000)
 
-        
-        url_gform = create_gform.Gform.create_google_form(data["Url"], data["Name_form"], data["Desciption_form"], data["Subjects"], data["Questions_for_subject"], data["Questions_for_teachers"])
-        
-        if("http" in url_gform):
+        self.worker = GFormWorker()
+        self.worker.finished.connect(self.on_form_created)
+        self.worker.start()
+
+    def on_form_created(self, url_gform):
+        """Вызывается после завершения работы потока GFormWorker."""
+        if "http" in url_gform:
             self.ui.statusBar.showMessage("Форма создана", 5000)
             dlg = QMessageBox(self)
             dlg.setWindowTitle("Форма создана")
             dlg.setText("Открыть её?")
-            dlg.setStandardButtons(
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
-            )
+            dlg.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
             dlg.setIcon(QMessageBox.Icon.Question)
             button = dlg.exec()
 
             if button == QMessageBox.StandardButton.Yes:
                 webbrowser.open(url_gform)
-            
         else:
             self.ui.statusBar.showMessage("Ошибка создания формы", 5000)
             dlg = QMessageBox(self)
-            dlg.setWindowTitle("Форма не создана")
+            dlg.setWindowTitle("Ошибка")
             dlg.setText(url_gform)
             dlg.setStandardButtons(QMessageBox.StandardButton.Ok)
-            button = dlg.exec()
+            dlg.exec()
 
 
-
-
-
+def parsers(path):
+    return parser.parse(path)
 
 app = QApplication([])
 window = MainWindow()
