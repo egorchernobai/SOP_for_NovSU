@@ -14,20 +14,26 @@ class parser:
                     continue
 
                 answers = line[:-1].split("\",\"")[1:]
-                result = {"Преподаватели":{}}
+                result = {"Предметы": {}, "Преподаватели":{}}
                 answer_index = 0
 
                 for subject, teachers in data1["Subjects"].items():
-                    result[subject] = {"questions": {}}
+                    result["Предметы"][subject] = {}
                     
                     # Заполняем вопросы по предмету
                     for question in data1["Questions_for_subject"]:
                         if answer_index < len(answers):
                             try:
-                                result[subject]["questions"][question].append(answers[answer_index])
+                                if len(data1["Questions_for_subject"][question]) == 1:
+                                    result["Предметы"][subject][question].append(answers[answer_index])
+                                else:
+                                    result["Предметы"][subject][question].append(int(answers[answer_index]))
                             except:
-                                result[subject]["questions"][question] = []
-                                result[subject]["questions"][question].append(answers[answer_index])
+                                result["Предметы"][subject][question] = []
+                                if len(data1["Questions_for_subject"][question]) == 1:
+                                    result["Предметы"][subject][question].append(answers[answer_index])
+                                else:
+                                    result["Предметы"][subject][question].append(int(answers[answer_index]))
                             answer_index += 1
                     
                     # Заполняем вопросы по преподавателям
@@ -36,10 +42,18 @@ class parser:
                         for question in data1["Questions_for_teachers"]:
                             if answer_index < len(answers):
                                 try:
-                                    result["Преподаватели"][teacher][question].append(answers[answer_index])
+                                    if len(data1["Questions_for_teachers"][question]) == 1:
+                                        result["Преподаватели"][teacher][question].append(answers[answer_index])
+                                    else:
+                                        result["Преподаватели"][teacher][question].append(int(answers[answer_index]))
                                 except:
                                     result["Преподаватели"][teacher][question] = []
-                                    result["Преподаватели"][teacher][question].append(answers[answer_index])
+                                    if len(data1["Questions_for_teachers"][question]) == 1:
+                                        result["Преподаватели"][teacher][question].append(answers[answer_index])
+                                    else:
+                                        result["Преподаватели"][teacher][question].append(int(answers[answer_index]))
                                 answer_index += 1
         return result
+    
 
+# parser.parse("1.csv")
