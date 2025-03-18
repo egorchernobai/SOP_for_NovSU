@@ -1,59 +1,50 @@
 import json
+import csv
 
 
 class parser:
+    @staticmethod
     def parse(path):
         with open("settings.json", "r", encoding="utf-8") as settings_file:
             data1 = json.load(settings_file)
 
-        with open(path, "r", encoding="utf-8") as table:
-            i = 0
-            for line in table:
-                if i == 0:
-                    i+=1
-                    continue
+        result = {"Предметы": {}, "Преподаватели": {}}
 
-                answers = line[:-1].split("\",\"")[1:]
-                result = {"Предметы": {}, "Преподаватели":{}}
+        with open(path, "r", encoding="utf-8") as table:
+            reader = csv.reader(table)  # Используем csv.reader для корректного парсинга
+            next(reader)  # Пропускаем заголовок
+
+            for row in reader:
+                answers = row[1:]  # Пропускаем первый столбец (дата)
                 answer_index = 0
 
                 for subject, teachers in data1["Subjects"].items():
-                    result["Предметы"][subject] = {}
-                    
-                    # Заполняем вопросы по предмету
+                    if subject not in result["Предметы"]:
+                        result["Предметы"][subject] = {}
+
                     for question in data1["Questions_for_subject"]:
                         if answer_index < len(answers):
-                            try:
-                                if len(data1["Questions_for_subject"][question]) == 1:
-                                    result["Предметы"][subject][question].append(answers[answer_index])
-                                else:
-                                    result["Предметы"][subject][question].append(int(answers[answer_index]))
-                            except:
-                                result["Предметы"][subject][question] = []
-                                if len(data1["Questions_for_subject"][question]) == 1:
-                                    result["Предметы"][subject][question].append(answers[answer_index])
-                                else:
-                                    result["Предметы"][subject][question].append(int(answers[answer_index]))
+                            value = answers[answer_index].strip()  # Убираем пробелы и кавычки
+                            if value.isdigit():
+                                value = int(value)
+
+                            result["Предметы"][subject].setdefault(question, []).append(value)
                             answer_index += 1
-                    
-                    # Заполняем вопросы по преподавателям
+
                     for teacher in teachers:
-                        result["Преподаватели"][teacher] = {}
+                        if teacher not in result["Преподаватели"]:
+                            result["Преподаватели"][teacher] = {}
+
                         for question in data1["Questions_for_teachers"]:
                             if answer_index < len(answers):
-                                try:
-                                    if len(data1["Questions_for_teachers"][question]) == 1:
-                                        result["Преподаватели"][teacher][question].append(answers[answer_index])
-                                    else:
-                                        result["Преподаватели"][teacher][question].append(int(answers[answer_index]))
-                                except:
-                                    result["Преподаватели"][teacher][question] = []
-                                    if len(data1["Questions_for_teachers"][question]) == 1:
-                                        result["Преподаватели"][teacher][question].append(answers[answer_index])
-                                    else:
-                                        result["Преподаватели"][teacher][question].append(int(answers[answer_index]))
-                                answer_index += 1
-        return result
-    
+                                value = answers[answer_index].strip()
+                                if value.isdigit():
+                                    value = int(value)
 
-# parser.parse("1.csv")
+                                result["Преподаватели"][teacher].setdefault(question, []).append(value)
+                                answer_index += 1
+
+        return result
+
+
+
