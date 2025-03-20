@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QFileDialog
 from ui import Ui_MainWindow  # Ваш сгенерированный UI класс
 import json
 from PyQt6.QtCore import Qt
@@ -7,6 +7,8 @@ import webbrowser
 from PyQt6.QtCore import QThread, pyqtSignal
 import asyncio
 from parser_csv import parser
+from word_create import Word
+from excel_create import Excel
 
 class GFormWorker(QThread):
     finished = pyqtSignal(str)  # Сигнал с URL формы или сообщением об ошибке
@@ -96,7 +98,12 @@ class MainWindow(QMainWindow):
 
         self.ui.finish_button.clicked.connect(self.start_creating_gform)
 
-
+        self.ui.csv_picker.clicked.connect(self.pick_path_to_csv)
+        self.ui.csv_save.clicked.connect(self.save_csv_path)
+        self.ui.out_file_picker.clicked.connect(self.pick_path_to_folder)
+        self.ui.save_out.clicked.connect(self.save_out_path)
+        self.ui.save_word.clicked.connect(self.save_word)
+        self.ui.save_excel.clicked.connect(self.save_excel)
 
     def change_url(self):
         self.data["Url"] = self.ui.url_script.text()
@@ -273,6 +280,63 @@ class MainWindow(QMainWindow):
             dlg.setStandardButtons(QMessageBox.StandardButton.Ok)
             dlg.exec()
 
+    def pick_path_to_csv(self):
+        file_name, _ = QFileDialog.getOpenFileName(window, 'Путь до csv', '', '*.csv')
+
+        if file_name:
+            self.ui.csv_path.setText(file_name)
+        
+    def save_csv_path(self):
+        file_name =  self.ui.csv_path.text()
+        if not file_name:
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle("Путь не указан")
+            dlg.setText("Введите корректный путь до файла")
+            dlg.setStandardButtons(QMessageBox.StandardButton.Ok)
+            dlg.exec()
+        else:
+            self.csv_path = file_name
+            
+    def pick_path_to_folder(self):
+        folder_name = QFileDialog.getExistingDirectory(window, 'Путь до папки сохранения')
+
+        if folder_name:
+            self.ui.out_path.setText(folder_name)
+    
+    def save_out_path(self):
+        folder_name =  self.ui.out_path.text()
+        if not folder_name:
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle("Путь не указан")
+            dlg.setText("Введите корректный путь до файла")
+            dlg.setStandardButtons(QMessageBox.StandardButton.Ok)
+            dlg.exec()
+        else:
+            self.out_path = folder_name
+    
+    def save_word(self):
+        try:
+            Word(self.csv_path, self.out_path+"/out.docx")
+            self.ui.statusBar.showMessage("Документ Word создан", 5000)
+        except:
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle("Ошибка!")
+            dlg.setText("Ошибка  при создании Word документа")
+            dlg.setStandardButtons(QMessageBox.StandardButton.Ok)
+            dlg.exec()
+
+    def save_excel(self):
+        try:
+            nw = Excel(self.csv_path, self.out_path+"/out.xlsx")
+            nw.create_list()
+            nw.create_teachers_list()
+            self.ui.statusBar.showMessage("Документ Excel создан", 5000)
+        except:
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle("Ошибка!")
+            dlg.setText("Ошибка при создании Excel документа")
+            dlg.setStandardButtons(QMessageBox.StandardButton.Ok)
+            dlg.exec()
 
 def parsers(path):
     return parser.parse(path)

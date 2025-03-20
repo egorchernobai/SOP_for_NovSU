@@ -38,7 +38,7 @@
      <height>16777215</height>
     </size>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
+   <layout class="QFormLayout" name="formLayout">
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -52,355 +52,426 @@
      <number>0</number>
     </property>
     <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
-       <widget class="QTabWidget" name="tabWidget">
-        <property name="currentIndex">
-         <number>1</number>
-        </property>
-        <widget class="QWidget" name="main_tab">
-         <attribute name="title">
-          <string>Главная</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="generating_gform_tab">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <attribute name="title">
-          <string>Генерация Google Form</string>
-         </attribute>
-         <layout class="QGridLayout" name="_2" columnstretch="0,0,0,0">
-          <item row="4" column="3">
-           <widget class="QTextEdit" name="teachers">
-            <property name="placeholderText">
-             <string>&quot;ФИО 1&quot;, &quot;ФИО 2&quot;, ...</string>
-            </property>
-           </widget>
+     <layout class="QGridLayout" name="gridLayout"/>
+    </item>
+    <item row="0" column="1">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="main_tab">
+       <attribute name="title">
+        <string>Главная</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Выберите csv</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLineEdit" name="csv_path">
+          <property name="placeholderText">
+           <string>C:/...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QPushButton" name="csv_save">
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="save_excel">
+          <property name="text">
+           <string>Сохранить excel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Выберите путь для сохранения</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLineEdit" name="out_path">
+          <property name="placeholderText">
+           <string>C:/...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="QPushButton" name="save_out">
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QPushButton" name="csv_picker">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QPushButton" name="out_file_picker">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3" colspan="2">
+         <widget class="QPushButton" name="save_word">
+          <property name="text">
+           <string>Сохранить word</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="generating_gform_tab">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <attribute name="title">
+        <string>Генерация Google Form</string>
+       </attribute>
+       <layout class="QGridLayout" name="_2" columnstretch="0,0,0,0">
+        <item row="4" column="3">
+         <widget class="QTextEdit" name="teachers">
+          <property name="placeholderText">
+           <string>&quot;ФИО 1&quot;, &quot;ФИО 2&quot;, ...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QTextEdit" name="subjects">
+          <property name="placeholderText">
+           <string>&quot;Макроэкономика&quot;, &quot;SWOT-анализ&quot;, &quot;Менеджмент: концепции и технологии 21 века&quot;, &quot;Маркетинг&quot;, &quot;Теория вероятностей и математическая статистика&quot;, &quot;Правовая грамотность&quot;, &quot;Английский язык&quot;, &quot;История России&quot;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Предметы (в кавчках, через запятую):</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QComboBox" name="questions_for_teachers_combobox">
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>Ясность требований, предъявляемых к студентам: </string>
+           </property>
           </item>
-          <item row="3" column="3">
-           <widget class="QTextEdit" name="subjects">
-            <property name="placeholderText">
-             <string>&quot;Макроэкономика&quot;, &quot;SWOT-анализ&quot;, &quot;Менеджмент: концепции и технологии 21 века&quot;, &quot;Маркетинг&quot;, &quot;Теория вероятностей и математическая статистика&quot;, &quot;Правовая грамотность&quot;, &quot;Английский язык&quot;, &quot;История России&quot;</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Ясность и последовательность изложения материала:</string>
+           </property>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>Предметы (в кавчках, через запятую):</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Контакт преподавателя с аудиторией:</string>
+           </property>
           </item>
-          <item row="8" column="0">
-           <widget class="QComboBox" name="questions_for_teachers_combobox">
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <item>
-             <property name="text">
-              <string>Ясность требований, предъявляемых к студентам: </string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ясность и последовательность изложения материала:</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Контакт преподавателя с аудиторией:</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Возможность внеаудиторного общения по учебным и научным вопросам:</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Что вам нравится в работе данного преподавателя (успешные практики и форматы, стиль взаимодействия и др.)?</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Что бы вы предложили изменить в работе данного преподавателя (чего не хватает, что кажется лишним и т.д.)?</string>
-             </property>
-            </item>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Возможность внеаудиторного общения по учебным и научным вопросам:</string>
+           </property>
           </item>
-          <item row="8" column="1">
-           <widget class="QCheckBox" name="isrequired_subject_2">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Что вам нравится в работе данного преподавателя (успешные практики и форматы, стиль взаимодействия и др.)?</string>
+           </property>
           </item>
-          <item row="8" column="3">
-           <widget class="QTextEdit" name="variants_for_teacher">
-            <property name="placeholderText">
-             <string>Варианты ответа (в кавычках, через запятую, поставить галочку если вопрос обязательный. Оставить поле пустым, если нужно вводить ответ с клавиатуры)</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Что бы вы предложили изменить в работе данного преподавателя (чего не хватает, что кажется лишним и т.д.)?</string>
+           </property>
           </item>
-          <item row="7" column="3">
-           <widget class="QTextEdit" name="questions_for_teachers">
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QCheckBox" name="isrequired_subject_2">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="3">
+         <widget class="QTextEdit" name="variants_for_teacher">
+          <property name="placeholderText">
+           <string>Варианты ответа (в кавычках, через запятую, поставить галочку если вопрос обязательный. Оставить поле пустым, если нужно вводить ответ с клавиатуры)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="3">
+         <widget class="QTextEdit" name="questions_for_teachers">
+          <property name="html">
+           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="placeholderText">
-             <string>&quot;Ясность требований, предъявляемых к студентам: &quot;, ...</string>
-            </property>
-           </widget>
+          </property>
+          <property name="placeholderText">
+           <string>&quot;Ясность требований, предъявляемых к студентам: &quot;, ...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Заголовок формы:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QComboBox" name="subjects_combobox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="editable">
+           <bool>false</bool>
+          </property>
+          <property name="currentText">
+           <string>Макроэкономика</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Макроэкономика</string>
+           </property>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Заголовок формы:</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>SWOT-анализ: проектный семинар</string>
+           </property>
           </item>
-          <item row="4" column="0">
-           <widget class="QComboBox" name="subjects_combobox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <property name="currentText">
-             <string>Макроэкономика</string>
-            </property>
-            <item>
-             <property name="text">
-              <string>Макроэкономика</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>SWOT-анализ: проектный семинар</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Менеджмент: концепции и технологии 21 века</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Маркетинг</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Теория вероятностей и математическая статистика</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Правовая грамотность</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Английский язык</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>История России</string>
-             </property>
-            </item>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Менеджмент: концепции и технологии 21 века</string>
+           </property>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Ссылка на Google Script:</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Маркетинг</string>
+           </property>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>Описание формы:</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Теория вероятностей и математическая статистика</string>
+           </property>
           </item>
-          <item row="6" column="0">
-           <widget class="QComboBox" name="questions_for_subject_combobox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <item>
-             <property name="text">
-              <string>Полезность курса для вашей будущей карьеры:</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Полезность курса для расширения кругозора и разностороннего развития:</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Новизна полученных знаний:</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Сложность курса для успешного прохождения («1» — курс очень легкий, «10» — курс очень сложный для прохождения):</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Оцените соответствие содержания курса (лекции, практические работы, самостоятельные работы студентов) с программой экзамена ( «1» — полное несоответствие,  «5» — полное соответствие):</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Оцените сложность экзамена от 1 до 5 («1» - очень легкий, «5» - очень сложный):</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Что показалось вам полезным в содержании и организации данного курса (эффективные подходы, интересные темы, формы контроля, значимость для определенных практических задач и т.д.)?</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Что бы вы предложили изменить в содержании и организации данного курса (чего не хватило, что показалось лишним или неэффективным и т.д.):</string>
-             </property>
-            </item>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Правовая грамотность</string>
+           </property>
           </item>
-          <item row="2" column="3">
-           <widget class="QLineEdit" name="description_form">
-            <property name="placeholderText">
-             <string>Студенческая оценка преподавания — это ключевой механизм обратной связи об учебном процессе. Опрос анонимный.</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Английский язык</string>
+           </property>
           </item>
-          <item row="6" column="3">
-           <widget class="QTextEdit" name="variants_for_questions">
-            <property name="placeholderText">
-             <string>Варианты ответа (в кавычках, через запятую, поставить галочку если вопрос обязательный. Оставить поле пустым, если нужно вводить ответ с клавиатуры)</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>История России</string>
+           </property>
           </item>
-          <item row="1" column="3">
-           <widget class="QLineEdit" name="name_form">
-            <property name="placeholderText">
-             <string>Тестовая форма</string>
-            </property>
-           </widget>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Ссылка на Google Script:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Описание формы:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QComboBox" name="questions_for_subject_combobox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>Полезность курса для вашей будущей карьеры:</string>
+           </property>
           </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Вопросы для преподавателей:</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Полезность курса для расширения кругозора и разностороннего развития:</string>
+           </property>
           </item>
-          <item row="6" column="1">
-           <widget class="QCheckBox" name="isrequired_subject">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Новизна полученных знаний:</string>
+           </property>
           </item>
-          <item row="5" column="3">
-           <widget class="QTextEdit" name="questions_for_subject">
-            <property name="placeholderText">
-             <string>&quot;Полезность курса для вашей будущей карьеры:&quot;, ...</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Сложность курса для успешного прохождения («1» — курс очень легкий, «10» — курс очень сложный для прохождения):</string>
+           </property>
           </item>
-          <item row="0" column="3">
-           <widget class="QLineEdit" name="url_script">
-            <property name="placeholderText">
-             <string>/script.google.com/macros/s/*/exec</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Оцените соответствие содержания курса (лекции, практические работы, самостоятельные работы студентов) с программой экзамена ( «1» — полное несоответствие,  «5» — полное соответствие):</string>
+           </property>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>Вопросы для дисциплин:</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Оцените сложность экзамена от 1 до 5 («1» - очень легкий, «5» - очень сложный):</string>
+           </property>
           </item>
-          <item row="9" column="3">
-           <widget class="QPushButton" name="finish_button">
-            <property name="text">
-             <string>Создать форму</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Что показалось вам полезным в содержании и организации данного курса (эффективные подходы, интересные темы, формы контроля, значимость для определенных практических задач и т.д.)?</string>
+           </property>
           </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="about_tab">
-         <attribute name="title">
-          <string>О нас</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QLabel" name="about_us_label">
-            <property name="font">
-             <font>
-              <pointsize>14</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По всем багам и ошибкам программы &lt;/p&gt;&lt;p&gt;просьба обращаться нам&lt;/p&gt;&lt;p&gt;Наша команда: &lt;/p&gt;&lt;p&gt;Чернобай Егор, НовГУ 3091, &lt;a href=&quot;https://t.me/another_useless_nickname&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Телеграм&lt;/span&gt;&lt;/a&gt;, Chernobai.e.s@ya.ru&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="textInteractionFlags">
-             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>Что бы вы предложили изменить в содержании и организации данного курса (чего не хватило, что показалось лишним или неэффективным и т.д.):</string>
+           </property>
           </item>
-         </layout>
-        </widget>
-       </widget>
-      </item>
-     </layout>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QLineEdit" name="description_form">
+          <property name="placeholderText">
+           <string>Студенческая оценка преподавания — это ключевой механизм обратной связи об учебном процессе. Опрос анонимный.</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="3">
+         <widget class="QTextEdit" name="variants_for_questions">
+          <property name="placeholderText">
+           <string>Варианты ответа (в кавычках, через запятую, поставить галочку если вопрос обязательный. Оставить поле пустым, если нужно вводить ответ с клавиатуры)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QLineEdit" name="name_form">
+          <property name="placeholderText">
+           <string>Тестовая форма</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Вопросы для преподавателей:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QCheckBox" name="isrequired_subject">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="3">
+         <widget class="QTextEdit" name="questions_for_subject">
+          <property name="placeholderText">
+           <string>&quot;Полезность курса для вашей будущей карьеры:&quot;, ...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLineEdit" name="url_script">
+          <property name="placeholderText">
+           <string>/script.google.com/macros/s/*/exec</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Вопросы для дисциплин:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="3">
+         <widget class="QPushButton" name="finish_button">
+          <property name="text">
+           <string>Создать форму</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="about_tab">
+       <attribute name="title">
+        <string>О нас</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="about_us_label">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По всем багам и ошибкам программы &lt;/p&gt;&lt;p&gt;просьба обращаться нам&lt;/p&gt;&lt;p&gt;Наша команда: &lt;/p&gt;&lt;p&gt;Чернобай Егор, НовГУ 3091, &lt;a href=&quot;https://t.me/another_useless_nickname&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Телеграм&lt;/span&gt;&lt;/a&gt;, Chernobai.e.s@ya.ru&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
