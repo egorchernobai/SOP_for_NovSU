@@ -14,11 +14,14 @@ class Ui_MainWindow(object):
         # Настройка главного окна
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 780)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
-        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
+        sizePolicy.setHeightForWidth(
+            MainWindow.sizePolicy().hasHeightForWidth())
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QtCore.QSize(800, 780))
 
@@ -63,12 +66,14 @@ class Ui_MainWindow(object):
         # Заголовок label_7
         self.label_7 = QtWidgets.QLabel(parent=self.main_tab)
         self.label_7.setObjectName("label_7")
-        self.label_7.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)  # Центрируем текст
+        self.label_7.setAlignment(
+            QtCore.Qt.AlignmentFlag.AlignCenter)  # Центрируем текст
         font = QtGui.QFont()
         font.setPointSize(18)  # Увеличиваем размер шрифта
         font.setBold(True)  # Делаем текст жирным
         self.label_7.setFont(font)
-        self.gridLayout_4.addWidget(self.label_7, 1, 0, 1, 5)  # Растягиваем на всю ширину
+        # Растягиваем на всю ширину
+        self.gridLayout_4.addWidget(self.label_7, 1, 0, 1, 5)
 
         # Поле для ввода пути CSV
         self.csv_path = QtWidgets.QLineEdit(parent=self.main_tab)
@@ -91,12 +96,14 @@ class Ui_MainWindow(object):
         # Заголовок label_8
         self.label_8 = QtWidgets.QLabel(parent=self.main_tab)
         self.label_8.setObjectName("label_8")
-        self.label_8.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)  # Центрируем текст
+        self.label_8.setAlignment(
+            QtCore.Qt.AlignmentFlag.AlignCenter)  # Центрируем текст
         font = QtGui.QFont()
         font.setPointSize(18)  # Увеличиваем размер шрифта
         font.setBold(True)  # Делаем текст жирным
         self.label_8.setFont(font)
-        self.gridLayout_4.addWidget(self.label_8, 3, 0, 1, 5)  # Растягиваем на всю ширину
+        # Растягиваем на всю ширину
+        self.gridLayout_4.addWidget(self.label_8, 3, 0, 1, 5)
 
         # Поле для ввода пути сохранения
         self.out_path = QtWidgets.QLineEdit(parent=self.main_tab)
@@ -109,7 +116,6 @@ class Ui_MainWindow(object):
         self.save_out.setMinimumHeight(40)  # Увеличиваем высоту кнопки
         self.gridLayout_4.addWidget(self.save_out, 3, 4, 2, 1)
 
-
         # Кнопка выбора файла для сохранения
         self.out_file_picker = QtWidgets.QPushButton(parent=self.main_tab)
         self.out_file_picker.setText("Select")
@@ -121,7 +127,8 @@ class Ui_MainWindow(object):
         self.save_excel = QtWidgets.QPushButton(parent=self.main_tab)
         self.save_excel.setObjectName("save_excel")
         self.save_excel.setMinimumHeight(40)  # Увеличиваем высоту кнопки
-        self.gridLayout_4.addWidget(self.save_excel, 5, 0, 2, 2)  # Устанавливаем в строку 4, столбцы 0-1
+        # Устанавливаем в строку 4, столбцы 0-1
+        self.gridLayout_4.addWidget(self.save_excel, 5, 0, 2, 2)
 
         # Кнопка сохранения Word
         self.save_word = QtWidgets.QPushButton(parent=self.main_tab)
@@ -134,17 +141,21 @@ class Ui_MainWindow(object):
 
         # ------ Вкладка генерации gform ------
         self.generating_gform_tab = QtWidgets.QWidget()
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.generating_gform_tab.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.generating_gform_tab.sizePolicy().hasHeightForWidth())
         self.generating_gform_tab.setSizePolicy(sizePolicy)
-        self.generating_gform_tab.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.generating_gform_tab.setLayoutDirection(
+            QtCore.Qt.LayoutDirection.LeftToRight)
         self.generating_gform_tab.setAutoFillBackground(False)
         self.generating_gform_tab.setObjectName("generating_gform_tab")
 
         # Создание QScrollArea для вкладки
-        self.scroll_area = QtWidgets.QScrollArea(parent=self.generating_gform_tab)
+        self.scroll_area = QtWidgets.QScrollArea(
+            parent=self.generating_gform_tab)
         self.scroll_area.setWidgetResizable(True)
         self.scroll_area.setObjectName("scroll_area")
 
@@ -191,22 +202,28 @@ class Ui_MainWindow(object):
         self.label_4 = QtWidgets.QLabel(parent=self.generating_gform_tab)
         self.label_4.setObjectName("label_4")
         self._2.addWidget(self.label_4, 3, 0, 1, 1)
-        
-        self.questions_for_teachers_combobox = QtWidgets.QComboBox(parent=self.generating_gform_tab)
-        self.questions_for_teachers_combobox.setMaximumSize(QtCore.QSize(300, 16777215))
-        self.questions_for_teachers_combobox.setObjectName("questions_for_teachers_combobox")
+
+        self.questions_for_teachers_combobox = QtWidgets.QComboBox(
+            parent=self.generating_gform_tab)
+        self.questions_for_teachers_combobox.setMaximumSize(
+            QtCore.QSize(300, 16777215))
+        self.questions_for_teachers_combobox.setObjectName(
+            "questions_for_teachers_combobox")
         self._2.addWidget(self.questions_for_teachers_combobox, 8, 0, 1, 1)
 
-        self.isrequired_subject_2 = QtWidgets.QCheckBox(parent=self.generating_gform_tab)
+        self.isrequired_subject_2 = QtWidgets.QCheckBox(
+            parent=self.generating_gform_tab)
         self.isrequired_subject_2.setText("")
         self.isrequired_subject_2.setObjectName("isrequired_subject_2")
         self._2.addWidget(self.isrequired_subject_2, 8, 1, 1, 1)
-        
-        self.variants_for_teacher = QtWidgets.QTextEdit(parent=self.generating_gform_tab)
+
+        self.variants_for_teacher = QtWidgets.QTextEdit(
+            parent=self.generating_gform_tab)
         self.variants_for_teacher.setObjectName("variants_for_teacher")
         self._2.addWidget(self.variants_for_teacher, 8, 3, 1, 1)
 
-        self.questions_for_teachers = QtWidgets.QTextEdit(parent=self.generating_gform_tab)
+        self.questions_for_teachers = QtWidgets.QTextEdit(
+            parent=self.generating_gform_tab)
         self.questions_for_teachers.setObjectName("questions_for_teachers")
         self._2.addWidget(self.questions_for_teachers, 7, 3, 1, 1)
 
@@ -215,12 +232,15 @@ class Ui_MainWindow(object):
         self._2.addWidget(self.label_2, 1, 0, 1, 1)
 
         # Комбобокс
-        self.subjects_combobox = QtWidgets.QComboBox(parent=self.generating_gform_tab)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.subjects_combobox = QtWidgets.QComboBox(
+            parent=self.generating_gform_tab)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.subjects_combobox.sizePolicy().hasHeightForWidth())
-        
+        sizePolicy.setHeightForWidth(
+            self.subjects_combobox.sizePolicy().hasHeightForWidth())
+
         # Добавление элементов в комбобокс
         self.subjects_combobox.setSizePolicy(sizePolicy)
         self.subjects_combobox.setMaximumSize(QtCore.QSize(300, 16777215))
@@ -232,29 +252,36 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(parent=self.generating_gform_tab)
         self.label.setObjectName("label")
         self._2.addWidget(self.label, 0, 0, 1, 1)
-        
+
         self.label_3 = QtWidgets.QLabel(parent=self.generating_gform_tab)
         self.label_3.setObjectName("label_3")
         self._2.addWidget(self.label_3, 2, 0, 1, 1)
 
         # Комбобокс
-        self.questions_for_subject_combobox = QtWidgets.QComboBox(parent=self.generating_gform_tab)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.questions_for_subject_combobox = QtWidgets.QComboBox(
+            parent=self.generating_gform_tab)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.questions_for_subject_combobox.sizePolicy().hasHeightForWidth())
-        
+        sizePolicy.setHeightForWidth(
+            self.questions_for_subject_combobox.sizePolicy().hasHeightForWidth())
+
         # Добавление элементов в комбобокс
         self.questions_for_subject_combobox.setSizePolicy(sizePolicy)
-        self.questions_for_subject_combobox.setMaximumSize(QtCore.QSize(300, 16777215))
-        self.questions_for_subject_combobox.setObjectName("questions_for_subject_combobox")
+        self.questions_for_subject_combobox.setMaximumSize(
+            QtCore.QSize(300, 16777215))
+        self.questions_for_subject_combobox.setObjectName(
+            "questions_for_subject_combobox")
         self._2.addWidget(self.questions_for_subject_combobox, 6, 0, 1, 1)
 
-        self.description_form = QtWidgets.QLineEdit(parent=self.generating_gform_tab)
+        self.description_form = QtWidgets.QLineEdit(
+            parent=self.generating_gform_tab)
         self.description_form.setObjectName("description_form")
         self._2.addWidget(self.description_form, 2, 3, 1, 1)
 
-        self.variants_for_questions = QtWidgets.QTextEdit(parent=self.generating_gform_tab)
+        self.variants_for_questions = QtWidgets.QTextEdit(
+            parent=self.generating_gform_tab)
         self.variants_for_questions.setObjectName("variants_for_questions")
         self._2.addWidget(self.variants_for_questions, 6, 3, 1, 1)
 
@@ -267,12 +294,14 @@ class Ui_MainWindow(object):
         self._2.addWidget(self.label_6, 7, 0, 1, 1)
 
         # Добавление элементов в горизонтальную сетку
-        self.isrequired_subject = QtWidgets.QCheckBox(parent=self.generating_gform_tab)
+        self.isrequired_subject = QtWidgets.QCheckBox(
+            parent=self.generating_gform_tab)
         self.isrequired_subject.setText("")
         self.isrequired_subject.setObjectName("isrequired_subject")
         self._2.addWidget(self.isrequired_subject, 6, 1, 1, 1)
 
-        self.questions_for_subject = QtWidgets.QTextEdit(parent=self.generating_gform_tab)
+        self.questions_for_subject = QtWidgets.QTextEdit(
+            parent=self.generating_gform_tab)
         self.questions_for_subject.setObjectName("questions_for_subject")
         self._2.addWidget(self.questions_for_subject, 5, 3, 1, 1)
 
@@ -283,7 +312,7 @@ class Ui_MainWindow(object):
         self.label_5 = QtWidgets.QLabel(parent=self.generating_gform_tab)
         self.label_5.setObjectName("label_5")
         self._2.addWidget(self.label_5, 5, 0, 1, 1)
-        
+
         # Кнопка "finish_button"
         self.finish_button = QtWidgets.QPushButton(parent=self.scroll_content)
         self.finish_button.setObjectName("finish_button")
@@ -310,7 +339,8 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.about_us_label.setFont(font)
         self.about_us_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.about_us_label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.about_us_label.setTextInteractionFlags(
+            QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse | QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.about_us_label.setObjectName("about_us_label")
         self.gridLayout_2.addWidget(self.about_us_label, 0, 0, 1, 1)
 
@@ -318,13 +348,101 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.about_tab, "")
 
         # Загрузка QSS файла
-        with open("style.qss", "r") as style_file:
-            style = style_file.read()
-            MainWindow.setStyleSheet(style)
+        style = """
+/* Стиль вкладок QTabBar */
+QTabBar::tab {
+    margin: 5px;
+    padding: 10px 20px; /* Отступы для вкладок */
+    background: #f0f0f0; /* Цвет фона вкладки */
+    border: 1px solid #ccc; /* Граница вкладки */
+    border-bottom: 2px solid #ccc; /* Прозрачное подчёркивание по умолчанию */
+    border-radius: 5px; /* Скругление углов */
+}
+
+/* Стиль активной вкладки */
+QTabBar::tab:selected {
+    border: 1px solid #aaa; /* Граница активной вкладки */
+    border-bottom: 2px solid #6200ea; /* Фиолетовое подчёркивание для активной вкладки */
+}
+
+/* Стиль вкладки при наведении */
+QTabBar::tab:hover {
+    background: #e0e0ff; /* Светло-фиолетовый фон при наведении */
+    border-bottom: 2px solid #6200ea; /* Фиолетовое подчёркивание при наведении */
+}
+
+/* Стиль кнопок */
+QPushButton {
+    background-color: #f0f0f0; /* Цвет фона кнопки */
+    border: 1px solid #ccc; /* Граница кнопки */
+    border-radius: 5px; /* Скругление углов */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    font-size: 14px; /* Размер шрифта */
+}
+
+QPushButton:hover {
+    background-color: #e0e0ff; /* Светло-фиолетовый фон при наведении */
+    border-bottom: 2px solid #6200ea; /* Фиолетовое подчёркивание при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #d0d0ff; /* Более тёмный фиолетовый при нажатии */
+}
+
+QLabel {
+    margin: 0px; /* Убираем внешние отступы */
+    padding: 0px; /* Убираем внутренние отступы */
+}
+
+QWidget#main_tab {
+    background-color: rgba(98, 0, 234, 0.03);
+}
+
+QFrame#tab_frame {
+    background-color: white;
+}
+
+/* Стиль для QLabel */
+QLabel {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333; /* Тёмно-серый цвет текста */
+}
+
+/* Стиль для QTextEdit */
+QTextEdit {
+    background-color: #f9f9f9; /* Светло-серый фон */
+    border: 1px solid #ccc; /* Граница */
+    border-radius: 5px; /* Скругление углов */
+    padding: 5px;
+    font-size: 12px;
+}
+
+/* Стиль для QPushButton */
+QPushButton {
+    background-color: #6200ea; /* Фиолетовый фон */
+    color: white; /* Белый текст */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #3700b3; /* Более тёмный фиолетовый при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #bb86fc; /* Светло-фиолетовый при нажатии */
+}
+"""
 
         # Завершение настройки
-        self.gridLayout.addWidget(self.tab_frame, 0, 0, 1, 1)  # Добавляем tab_frame напрямую в gridLayout
-        MainWindow.setCentralWidget(self.centralwidget)  # Устанавливаем центральный виджет
+        # Добавляем tab_frame напрямую в gridLayout
+        self.gridLayout.addWidget(self.tab_frame, 0, 0, 1, 1)
+        # Устанавливаем центральный виджет
+        MainWindow.setCentralWidget(self.centralwidget)
         self.statusBar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusBar.setObjectName("statusBar")
         MainWindow.setStatusBar(self.statusBar)
@@ -337,40 +455,57 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "SOP for NovSU"))
         self.label_7.setText(_translate("MainWindow", "CSV Path:"))
-        self.teachers.setPlaceholderText(_translate("MainWindow", "\"ФИО 1\", \"ФИО 2\", ..."))
-        self.subjects.setPlaceholderText(_translate("MainWindow", "\"Макроэкономика\", \"SWOT-анализ\", \"Менеджмент: концепции и технологии 21 века\", \"Маркетинг\", \"Теория вероятностей и математическая статистика\", \"Правовая грамотность\", \"Английский язык\", \"История России\""))
-        self.label_4.setText(_translate("MainWindow", "Предметы (в кавчках, через запятую):"))
-        
-        self.variants_for_teacher.setPlaceholderText(_translate("MainWindow", "Варианты ответа (в кавычках, через запятую, поставить галочку если вопрос обязательный. Оставить поле пустым, если нужно вводить ответ с клавиатуры)"))
+        self.teachers.setPlaceholderText(_translate(
+            "MainWindow", "\"ФИО 1\", \"ФИО 2\", ..."))
+        self.subjects.setPlaceholderText(_translate(
+            "MainWindow", "\"Макроэкономика\", \"SWOT-анализ\", \"Менеджмент: концепции и технологии 21 века\", \"Маркетинг\", \"Теория вероятностей и математическая статистика\", \"Правовая грамотность\", \"Английский язык\", \"История России\""))
+        self.label_4.setText(_translate(
+            "MainWindow", "Предметы (в кавчках, через запятую):"))
+
+        self.variants_for_teacher.setPlaceholderText(_translate(
+            "MainWindow", "Варианты ответа (в кавычках, через запятую, поставить галочку если вопрос обязательный. Оставить поле пустым, если нужно вводить ответ с клавиатуры)"))
         self.questions_for_teachers.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.questions_for_teachers.setPlaceholderText(_translate("MainWindow", "\"Ясность требований, предъявляемых к студентам: \", ..."))
+                                                       "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                       "p, li { white-space: pre-wrap; }\n"
+                                                       "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+                                                       "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.questions_for_teachers.setPlaceholderText(_translate(
+            "MainWindow", "\"Ясность требований, предъявляемых к студентам: \", ..."))
         self.label_2.setText(_translate("MainWindow", "Заголовок формы:"))
-        
-        self.label.setText(_translate("MainWindow", "Ссылка на Google Script:"))
+
+        self.label.setText(_translate(
+            "MainWindow", "Ссылка на Google Script:"))
         self.label_3.setText(_translate("MainWindow", "Описание формы:"))
-        self.name_form.setPlaceholderText(_translate("MainWindow", "Тестовая форма"))
-        self.label_6.setText(_translate("MainWindow", "Вопросы для преподавателей:"))
-        self.questions_for_subject.setPlaceholderText(_translate("MainWindow", "\"Полезность курса для вашей будущей карьеры:\", ..."))
-        self.url_script.setPlaceholderText(_translate("MainWindow", "script.google.com/macros/s/*/exec"))
-        self.label_5.setText(_translate("MainWindow", "Вопросы для дисциплин:"))
+        self.name_form.setPlaceholderText(
+            _translate("MainWindow", "Тестовая форма"))
+        self.label_6.setText(_translate(
+            "MainWindow", "Вопросы для преподавателей:"))
+        self.questions_for_subject.setPlaceholderText(_translate(
+            "MainWindow", "\"Полезность курса для вашей будущей карьеры:\", ..."))
+        self.url_script.setPlaceholderText(_translate(
+            "MainWindow", "script.google.com/macros/s/*/exec"))
+        self.label_5.setText(_translate(
+            "MainWindow", "Вопросы для дисциплин:"))
         self.finish_button.setText(_translate("MainWindow", "Создать форму"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.generating_gform_tab), _translate("MainWindow", "Генерация Google Form"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(
+            self.generating_gform_tab), _translate("MainWindow", "Генерация Google Form"))
         self.about_us_label.setText(_translate("MainWindow", "<html><head/><body><p>По всем багам и ошибкам программы </p><p>просьба обращаться нам</p><p>Наша команда: </p><p>Андреев Александр, НовГУ 3091</p><p>Поташов Павел, НовГУ 3091</p><p>Сурин Ярослав, НовГУ 3091</p><p>Чернобай Егор, НовГУ 3091, <a href=\"https://t.me/another_useless_nickname\"><span style=\" text-decoration: underline; color:#0000ff;\">Телеграмм</span></a>, Chernobai.e.s@ya.ru</p></body></html>"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.about_tab), _translate("MainWindow", "О нас"))
-        self.variants_for_questions.setPlaceholderText("Варианты ответа (в кавычках, через запятую, поставить галочку если вопрос обязательный. Оставить поле пустым, если нужно вводить ответ с клавиатуры)")
-        self.description_form.setPlaceholderText("Студенческая оценка преподавания — это ключевой механизм обратной связи об учебном процессе. Опрос анонимный.")
+        self.tabWidget.setTabText(self.tabWidget.indexOf(
+            self.about_tab), _translate("MainWindow", "О нас"))
+        self.variants_for_questions.setPlaceholderText(
+            "Варианты ответа (в кавычках, через запятую, поставить галочку если вопрос обязательный. Оставить поле пустым, если нужно вводить ответ с клавиатуры)")
+        self.description_form.setPlaceholderText(
+            "Студенческая оценка преподавания — это ключевой механизм обратной связи об учебном процессе. Опрос анонимный.")
         self.label_7.setText(_translate("MainWindow", "Выберите csv"))
         self.csv_path.setPlaceholderText(_translate("MainWindow", "C:/..."))
         self.csv_save.setText(_translate("MainWindow", "Сохранить"))
         self.save_excel.setText(_translate("MainWindow", "Сохранить excel"))
-        self.label_8.setText(_translate("MainWindow", "Выберите путь для сохранения"))
+        self.label_8.setText(_translate(
+            "MainWindow", "Выберите путь для сохранения"))
         self.out_path.setPlaceholderText(_translate("MainWindow", "C:/..."))
         self.save_out.setText(_translate("MainWindow", "Сохранить"))
         self.save_word.setText(_translate("MainWindow", "Сохранить word"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.main_tab), _translate("MainWindow", "Главная"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(
+            self.main_tab), _translate("MainWindow", "Главная"))
         self.csv_picker.setText(_translate("MainWindow", "Выбрать"))
         self.out_file_picker.setText(_translate("MainWindow", "Выбрать"))
