@@ -17,7 +17,7 @@ class Word():
 
         for i in list(self.setts_json['Subjects'].keys()):
             self.add_subj(i)
-    
+
     def add_subj(self, subj):
         self.doc.add_heading(subj, 1)
         data1 = self.csv["Предметы"][subj]
@@ -26,10 +26,12 @@ class Word():
                 data = self.csv["Предметы"][subj][i]
                 counter = Counter(data)
                 total = len(data)
-                percentages = [(count / total) * 100 for count in counter.values()]
+                percentages = [(count / total) *
+                               100 for count in counter.values()]
                 labels = counter.keys()
                 fig, ax = plt.subplots()
-                ax.pie(percentages, labels=labels, autopct='%1.1f%%', startangle=90)
+                ax.pie(percentages, labels=labels,
+                       autopct='%1.1f%%', startangle=90)
                 ax.axis('equal')
                 img_stream = BytesIO()
                 plt.savefig(img_stream, format='png')
@@ -37,7 +39,7 @@ class Word():
                 self.doc.add_heading(i, 2)
                 self.doc.add_picture(img_stream)
                 img_stream.close()
-        
+
             else:
                 data = self.csv["Предметы"][subj][i]
                 self.doc.add_heading(i, 2)
@@ -46,7 +48,6 @@ class Word():
         for i in self.setts_json["Subjects"][subj]:
             self.add_teacher(i)
         self.doc.save(self.path_to_word)
-    
 
     def add_teacher(self, teach):
         self.doc.add_heading(teach, 1)
@@ -56,10 +57,12 @@ class Word():
                 data = self.csv["Преподаватели"][teach][i]
                 counter = Counter(data)
                 total = len(data)
-                percentages = [(count / total) * 100 for count in counter.values()]
+                percentages = [(count / total) *
+                               100 for count in counter.values()]
                 labels = counter.keys()
                 fig, ax = plt.subplots()
-                ax.pie(percentages, labels=labels, autopct='%1.1f%%', startangle=90)
+                ax.pie(percentages, labels=labels,
+                       autopct='%1.1f%%', startangle=90)
                 ax.axis('equal')
                 img_stream = BytesIO()
                 plt.savefig(img_stream, format='png')
@@ -74,4 +77,3 @@ class Word():
 
 
 # docs = Word("1.csv", "1.docx")
-

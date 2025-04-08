@@ -11,66 +11,128 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        # Настройка главного окна
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 780)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
+        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QtCore.QSize(800, 780))
+
+        # Центральный виджет
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
-        self.centralwidget.setSizePolicy(sizePolicy)
-        self.centralwidget.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.centralwidget.setObjectName("centralwidget")
+
+        # Основная сетка для центрального виджета
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.tabWidget = QtWidgets.QTabWidget(parent=self.centralwidget)
+
+        # Создание QFrame для QTabWidget
+        self.tab_frame = QtWidgets.QFrame(parent=self.centralwidget)
+        self.tab_frame.setObjectName("tab_frame")
+        self.tab_frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.tab_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+
+        # Лэйаут для QFrame
+        self.frame_layout = QtWidgets.QVBoxLayout(self.tab_frame)
+        self.frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.frame_layout.setObjectName("frame_layout")
+
+        # Вкладки
+        self.tabWidget = QtWidgets.QTabWidget(parent=self.tab_frame)
         self.tabWidget.setObjectName("tabWidget")
+        self.frame_layout.addWidget(self.tabWidget)
+
+        # Добавление QFrame в основную сетку
+        self.gridLayout.addWidget(self.tab_frame, 0, 0, 1, 1)
+
+        # ------ Вкладка главного окна ------
         self.main_tab = QtWidgets.QWidget()
         self.main_tab.setObjectName("main_tab")
+
+        # Горизонтальная сетка для вкладки главного окна
         self.gridLayout_4 = QtWidgets.QGridLayout(self.main_tab)
         self.gridLayout_4.setObjectName("gridLayout_4")
+
+        # Элементы вкладки главного окна
+
+        # Заголовок label_7
         self.label_7 = QtWidgets.QLabel(parent=self.main_tab)
         self.label_7.setObjectName("label_7")
-        self.gridLayout_4.addWidget(self.label_7, 0, 0, 1, 1)
+        self.label_7.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)  # Центрируем текст
+        font = QtGui.QFont()
+        font.setPointSize(18)  # Увеличиваем размер шрифта
+        font.setBold(True)  # Делаем текст жирным
+        self.label_7.setFont(font)
+        self.gridLayout_4.addWidget(self.label_7, 1, 0, 1, 5)  # Растягиваем на всю ширину
+
+        # Поле для ввода пути CSV
         self.csv_path = QtWidgets.QLineEdit(parent=self.main_tab)
         self.csv_path.setObjectName("csv_path")
-        self.gridLayout_4.addWidget(self.csv_path, 0, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.csv_path, 1, 1, 2, 3)
+
+        # Кнопка сохранения CSV
         self.csv_save = QtWidgets.QPushButton(parent=self.main_tab)
         self.csv_save.setObjectName("csv_save")
-        self.gridLayout_4.addWidget(self.csv_save, 0, 4, 1, 1)
-        self.save_excel = QtWidgets.QPushButton(parent=self.main_tab)
-        self.save_excel.setObjectName("save_excel")
-        self.gridLayout_4.addWidget(self.save_excel, 2, 0, 1, 1)
+        self.csv_save.setMinimumHeight(40)  # Увеличиваем высоту кнопки
+        self.gridLayout_4.addWidget(self.csv_save, 1, 4, 2, 1)
+
+        # Кнопка выбора CSV файла
+        self.csv_picker = QtWidgets.QPushButton(parent=self.main_tab)
+        self.csv_picker.setText("Select")
+        self.csv_picker.setObjectName("csv_picker")
+        self.csv_picker.setMinimumHeight(40)  # Увеличиваем высоту кнопки
+        self.gridLayout_4.addWidget(self.csv_picker, 1, 0, 2, 1)
+
+        # Заголовок label_8
         self.label_8 = QtWidgets.QLabel(parent=self.main_tab)
         self.label_8.setObjectName("label_8")
-        self.gridLayout_4.addWidget(self.label_8, 1, 0, 1, 1)
+        self.label_8.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)  # Центрируем текст
+        font = QtGui.QFont()
+        font.setPointSize(18)  # Увеличиваем размер шрифта
+        font.setBold(True)  # Делаем текст жирным
+        self.label_8.setFont(font)
+        self.gridLayout_4.addWidget(self.label_8, 3, 0, 1, 5)  # Растягиваем на всю ширину
+
+        # Поле для ввода пути сохранения
         self.out_path = QtWidgets.QLineEdit(parent=self.main_tab)
         self.out_path.setObjectName("out_path")
-        self.gridLayout_4.addWidget(self.out_path, 1, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.out_path, 3, 1, 2, 3)
+
+        # Кнопка сохранения пути
         self.save_out = QtWidgets.QPushButton(parent=self.main_tab)
         self.save_out.setObjectName("save_out")
-        self.gridLayout_4.addWidget(self.save_out, 1, 4, 1, 1)
-        self.csv_picker = QtWidgets.QPushButton(parent=self.main_tab)
-        self.csv_picker.setText("")
-        self.csv_picker.setObjectName("csv_picker")
-        self.gridLayout_4.addWidget(self.csv_picker, 0, 3, 1, 1)
+        self.save_out.setMinimumHeight(40)  # Увеличиваем высоту кнопки
+        self.gridLayout_4.addWidget(self.save_out, 3, 4, 2, 1)
+
+
+        # Кнопка выбора файла для сохранения
         self.out_file_picker = QtWidgets.QPushButton(parent=self.main_tab)
-        self.out_file_picker.setText("")
+        self.out_file_picker.setText("Select")
         self.out_file_picker.setObjectName("out_file_picker")
-        self.gridLayout_4.addWidget(self.out_file_picker, 1, 3, 1, 1)
+        self.out_file_picker.setMinimumHeight(40)  # Увеличиваем высоту кнопки
+        self.gridLayout_4.addWidget(self.out_file_picker, 3, 0, 2, 1)
+
+        # Кнопка сохранения Excel
+        self.save_excel = QtWidgets.QPushButton(parent=self.main_tab)
+        self.save_excel.setObjectName("save_excel")
+        self.save_excel.setMinimumHeight(40)  # Увеличиваем высоту кнопки
+        self.gridLayout_4.addWidget(self.save_excel, 5, 0, 2, 2)  # Устанавливаем в строку 4, столбцы 0-1
+
+        # Кнопка сохранения Word
         self.save_word = QtWidgets.QPushButton(parent=self.main_tab)
         self.save_word.setObjectName("save_word")
-        self.gridLayout_4.addWidget(self.save_word, 2, 3, 1, 2)
+        self.save_word.setMinimumHeight(40)  # Увеличиваем высоту кнопки
+        self.gridLayout_4.addWidget(self.save_word, 5, 3, 2, 2)
+
+        # Добавление вкладки
         self.tabWidget.addTab(self.main_tab, "")
+
+        # ------ Вкладка генерации gform ------
         self.generating_gform_tab = QtWidgets.QWidget()
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -80,92 +142,169 @@ class Ui_MainWindow(object):
         self.generating_gform_tab.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.generating_gform_tab.setAutoFillBackground(False)
         self.generating_gform_tab.setObjectName("generating_gform_tab")
+
+        # Создание QScrollArea для вкладки
+        self.scroll_area = QtWidgets.QScrollArea(parent=self.generating_gform_tab)
+        self.scroll_area.setWidgetResizable(True)
+        self.scroll_area.setObjectName("scroll_area")
+
+        # Создание виджета для содержимого
+        self.scroll_content = QtWidgets.QWidget()
+        self.scroll_content.setObjectName("scroll_content")
+        self.scroll_area.setWidget(self.scroll_content)
+
+        # Горизонтальная сетка для вкладки генерации gform
         self._2 = QtWidgets.QGridLayout(self.generating_gform_tab)
         self._2.setObjectName("_2")
-        self.teachers = QtWidgets.QTextEdit(parent=self.generating_gform_tab)
+
+        # Увеличение размеров и добавление элементов
+        # Метка "teachers"
+        self.label_6 = QtWidgets.QLabel(parent=self.scroll_content)
+        self.label_6.setObjectName("label_6")
+        font = QtGui.QFont()
+        font.setPointSize(14)  # Увеличиваем размер шрифта
+        font.setBold(True)
+        self.label_6.setFont(font)
+        self._2.addWidget(self.label_6, 7, 0, 1, 1)
+
+        # Поле "teachers"
+        self.teachers = QtWidgets.QTextEdit(parent=self.scroll_content)
         self.teachers.setObjectName("teachers")
+        self.teachers.setMinimumHeight(100)  # Увеличиваем высоту
         self._2.addWidget(self.teachers, 4, 3, 1, 1)
-        self.subjects = QtWidgets.QTextEdit(parent=self.generating_gform_tab)
+
+        # Поле "subjects"
+        self.subjects = QtWidgets.QTextEdit(parent=self.scroll_content)
         self.subjects.setObjectName("subjects")
+        self.subjects.setMinimumHeight(100)  # Увеличиваем высоту
         self._2.addWidget(self.subjects, 3, 3, 1, 1)
+
+        # Метка "subjects"
+        self.label_4 = QtWidgets.QLabel(parent=self.scroll_content)
+        self.label_4.setObjectName("label_4")
+        font = QtGui.QFont()
+        font.setPointSize(14)  # Увеличиваем размер шрифта
+        font.setBold(True)
+        self.label_4.setFont(font)
+        self._2.addWidget(self.label_4, 3, 0, 1, 1)
+
         self.label_4 = QtWidgets.QLabel(parent=self.generating_gform_tab)
         self.label_4.setObjectName("label_4")
         self._2.addWidget(self.label_4, 3, 0, 1, 1)
+        
         self.questions_for_teachers_combobox = QtWidgets.QComboBox(parent=self.generating_gform_tab)
         self.questions_for_teachers_combobox.setMaximumSize(QtCore.QSize(300, 16777215))
         self.questions_for_teachers_combobox.setObjectName("questions_for_teachers_combobox")
         self._2.addWidget(self.questions_for_teachers_combobox, 8, 0, 1, 1)
+
         self.isrequired_subject_2 = QtWidgets.QCheckBox(parent=self.generating_gform_tab)
         self.isrequired_subject_2.setText("")
         self.isrequired_subject_2.setObjectName("isrequired_subject_2")
         self._2.addWidget(self.isrequired_subject_2, 8, 1, 1, 1)
+        
         self.variants_for_teacher = QtWidgets.QTextEdit(parent=self.generating_gform_tab)
         self.variants_for_teacher.setObjectName("variants_for_teacher")
         self._2.addWidget(self.variants_for_teacher, 8, 3, 1, 1)
+
         self.questions_for_teachers = QtWidgets.QTextEdit(parent=self.generating_gform_tab)
         self.questions_for_teachers.setObjectName("questions_for_teachers")
         self._2.addWidget(self.questions_for_teachers, 7, 3, 1, 1)
+
         self.label_2 = QtWidgets.QLabel(parent=self.generating_gform_tab)
         self.label_2.setObjectName("label_2")
         self._2.addWidget(self.label_2, 1, 0, 1, 1)
+
+        # Комбобокс
         self.subjects_combobox = QtWidgets.QComboBox(parent=self.generating_gform_tab)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.subjects_combobox.sizePolicy().hasHeightForWidth())
+        
+        # Добавление элементов в комбобокс
         self.subjects_combobox.setSizePolicy(sizePolicy)
         self.subjects_combobox.setMaximumSize(QtCore.QSize(300, 16777215))
         self.subjects_combobox.setEditable(False)
         self.subjects_combobox.setObjectName("subjects_combobox")
         self._2.addWidget(self.subjects_combobox, 4, 0, 1, 1)
+
+        # Добавление элементов в горизонтальную сетку
         self.label = QtWidgets.QLabel(parent=self.generating_gform_tab)
         self.label.setObjectName("label")
         self._2.addWidget(self.label, 0, 0, 1, 1)
+        
         self.label_3 = QtWidgets.QLabel(parent=self.generating_gform_tab)
         self.label_3.setObjectName("label_3")
         self._2.addWidget(self.label_3, 2, 0, 1, 1)
+
+        # Комбобокс
         self.questions_for_subject_combobox = QtWidgets.QComboBox(parent=self.generating_gform_tab)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.questions_for_subject_combobox.sizePolicy().hasHeightForWidth())
+        
+        # Добавление элементов в комбобокс
         self.questions_for_subject_combobox.setSizePolicy(sizePolicy)
         self.questions_for_subject_combobox.setMaximumSize(QtCore.QSize(300, 16777215))
         self.questions_for_subject_combobox.setObjectName("questions_for_subject_combobox")
         self._2.addWidget(self.questions_for_subject_combobox, 6, 0, 1, 1)
+
         self.description_form = QtWidgets.QLineEdit(parent=self.generating_gform_tab)
         self.description_form.setObjectName("description_form")
         self._2.addWidget(self.description_form, 2, 3, 1, 1)
+
         self.variants_for_questions = QtWidgets.QTextEdit(parent=self.generating_gform_tab)
         self.variants_for_questions.setObjectName("variants_for_questions")
         self._2.addWidget(self.variants_for_questions, 6, 3, 1, 1)
+
         self.name_form = QtWidgets.QLineEdit(parent=self.generating_gform_tab)
         self.name_form.setObjectName("name_form")
         self._2.addWidget(self.name_form, 1, 3, 1, 1)
+
         self.label_6 = QtWidgets.QLabel(parent=self.generating_gform_tab)
         self.label_6.setObjectName("label_6")
         self._2.addWidget(self.label_6, 7, 0, 1, 1)
+
+        # Добавление элементов в горизонтальную сетку
         self.isrequired_subject = QtWidgets.QCheckBox(parent=self.generating_gform_tab)
         self.isrequired_subject.setText("")
         self.isrequired_subject.setObjectName("isrequired_subject")
         self._2.addWidget(self.isrequired_subject, 6, 1, 1, 1)
+
         self.questions_for_subject = QtWidgets.QTextEdit(parent=self.generating_gform_tab)
         self.questions_for_subject.setObjectName("questions_for_subject")
         self._2.addWidget(self.questions_for_subject, 5, 3, 1, 1)
+
         self.url_script = QtWidgets.QLineEdit(parent=self.generating_gform_tab)
         self.url_script.setObjectName("url_script")
         self._2.addWidget(self.url_script, 0, 3, 1, 1)
+
         self.label_5 = QtWidgets.QLabel(parent=self.generating_gform_tab)
         self.label_5.setObjectName("label_5")
         self._2.addWidget(self.label_5, 5, 0, 1, 1)
-        self.finish_button = QtWidgets.QPushButton(parent=self.generating_gform_tab)
+        
+        # Кнопка "finish_button"
+        self.finish_button = QtWidgets.QPushButton(parent=self.scroll_content)
         self.finish_button.setObjectName("finish_button")
+        self.finish_button.setMinimumHeight(50)  # Увеличиваем высоту кнопки
         self._2.addWidget(self.finish_button, 9, 3, 1, 1)
+
+        # Добавление scroll_area в вкладку
+        self._2.addWidget(self.scroll_area, 0, 0, 1, 1)
+
+        # Добавление элементов в вертикальную сетку
         self.tabWidget.addTab(self.generating_gform_tab, "")
+
+        # ------ Вкладка "О программе" ------
         self.about_tab = QtWidgets.QWidget()
         self.about_tab.setObjectName("about_tab")
+
+        # Добавление элементов в вертикальную сетку
         self.gridLayout_2 = QtWidgets.QGridLayout(self.about_tab)
         self.gridLayout_2.setObjectName("gridLayout_2")
+
+        # Добавление элементов в горизонтальную сетку
         self.about_us_label = QtWidgets.QLabel(parent=self.about_tab)
         font = QtGui.QFont()
         font.setPointSize(14)
@@ -174,10 +313,18 @@ class Ui_MainWindow(object):
         self.about_us_label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.about_us_label.setObjectName("about_us_label")
         self.gridLayout_2.addWidget(self.about_us_label, 0, 0, 1, 1)
+
+        # Добавление элементов в горизонтальную сетку
         self.tabWidget.addTab(self.about_tab, "")
-        self.verticalLayout_3.addWidget(self.tabWidget)
-        self.gridLayout.addLayout(self.verticalLayout_3, 0, 0, 1, 1)
-        MainWindow.setCentralWidget(self.centralwidget)
+
+        # Загрузка QSS файла
+        with open("style.qss", "r") as style_file:
+            style = style_file.read()
+            MainWindow.setStyleSheet(style)
+
+        # Завершение настройки
+        self.gridLayout.addWidget(self.tab_frame, 0, 0, 1, 1)  # Добавляем tab_frame напрямую в gridLayout
+        MainWindow.setCentralWidget(self.centralwidget)  # Устанавливаем центральный виджет
         self.statusBar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusBar.setObjectName("statusBar")
         MainWindow.setStatusBar(self.statusBar)
@@ -188,8 +335,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Студенческая оценка преподавания"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.main_tab), _translate("MainWindow", "Главная"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "SOP for NovSU"))
+        self.label_7.setText(_translate("MainWindow", "CSV Path:"))
         self.teachers.setPlaceholderText(_translate("MainWindow", "\"ФИО 1\", \"ФИО 2\", ..."))
         self.subjects.setPlaceholderText(_translate("MainWindow", "\"Макроэкономика\", \"SWOT-анализ\", \"Менеджмент: концепции и технологии 21 века\", \"Маркетинг\", \"Теория вероятностей и математическая статистика\", \"Правовая грамотность\", \"Английский язык\", \"История России\""))
         self.label_4.setText(_translate("MainWindow", "Предметы (в кавчках, через запятую):"))
@@ -212,7 +359,7 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "Вопросы для дисциплин:"))
         self.finish_button.setText(_translate("MainWindow", "Создать форму"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.generating_gform_tab), _translate("MainWindow", "Генерация Google Form"))
-        self.about_us_label.setText(_translate("MainWindow", "<html><head/><body><p>По всем багам и ошибкам программы </p><p>просьба обращаться нам</p><p>Наша команда: </p><p>Андреев Александр, НовГУ 3091</p><p>Поташов Павел, НовГУ 3091</p><p>Сурин Ярослав, НовГУ 3091</p><p>Чернобай Егор, НовГУ 3091, <a href=\"https://t.me/another_useless_nickname\"><span style=\" text-decoration: underline; color:#0000ff;\">Телеграм</span></a>, Chernobai.e.s@ya.ru</p></body></html>"))
+        self.about_us_label.setText(_translate("MainWindow", "<html><head/><body><p>По всем багам и ошибкам программы </p><p>просьба обращаться нам</p><p>Наша команда: </p><p>Андреев Александр, НовГУ 3091</p><p>Поташов Павел, НовГУ 3091</p><p>Сурин Ярослав, НовГУ 3091</p><p>Чернобай Егор, НовГУ 3091, <a href=\"https://t.me/another_useless_nickname\"><span style=\" text-decoration: underline; color:#0000ff;\">Телеграмм</span></a>, Chernobai.e.s@ya.ru</p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.about_tab), _translate("MainWindow", "О нас"))
         self.variants_for_questions.setPlaceholderText("Варианты ответа (в кавычках, через запятую, поставить галочку если вопрос обязательный. Оставить поле пустым, если нужно вводить ответ с клавиатуры)")
         self.description_form.setPlaceholderText("Студенческая оценка преподавания — это ключевой механизм обратной связи об учебном процессе. Опрос анонимный.")
@@ -225,3 +372,5 @@ class Ui_MainWindow(object):
         self.save_out.setText(_translate("MainWindow", "Сохранить"))
         self.save_word.setText(_translate("MainWindow", "Сохранить word"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.main_tab), _translate("MainWindow", "Главная"))
+        self.csv_picker.setText(_translate("MainWindow", "Выбрать"))
+        self.out_file_picker.setText(_translate("MainWindow", "Выбрать"))

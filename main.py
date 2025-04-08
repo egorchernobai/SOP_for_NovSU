@@ -36,6 +36,11 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.data = data
         self.ui.setupUi(self)  # Передаём экземпляр QMainWindow
+
+        with open("style.qss", "r") as style_file:
+            style = style_file.read()
+            self.setStyleSheet(style)
+
         self.ui.url_script.setText(data['Url'])
         self.ui.name_form.setText(data['Name_form'])
         self.ui.description_form.setText(data['Desciption_form'])
