@@ -437,7 +437,7 @@ QPushButton:pressed {
     background-color: #bb86fc; /* Светло-фиолетовый при нажатии */
 }
 """
-
+        MainWindow.setStyleSheet(style)
         # Завершение настройки
         # Добавляем tab_frame напрямую в gridLayout
         self.gridLayout.addWidget(self.tab_frame, 0, 0, 1, 1)

@@ -39,10 +39,96 @@ class MainWindow(QMainWindow):
         self.data = data
         self.ui.setupUi(self)  # Передаём экземпляр QMainWindow
 
-        with open("style.qss", "r") as style_file:
-            style = style_file.read()
-            self.setStyleSheet(style)
+        style = """
+/* Стиль вкладок QTabBar */
+QTabBar::tab {
+    margin: 5px;
+    padding: 10px 20px; /* Отступы для вкладок */
+    background: #f0f0f0; /* Цвет фона вкладки */
+    border: 1px solid #ccc; /* Граница вкладки */
+    border-bottom: 2px solid #ccc; /* Прозрачное подчёркивание по умолчанию */
+    border-radius: 5px; /* Скругление углов */
+}
 
+/* Стиль активной вкладки */
+QTabBar::tab:selected {
+    border: 1px solid #aaa; /* Граница активной вкладки */
+    border-bottom: 2px solid #6200ea; /* Фиолетовое подчёркивание для активной вкладки */
+}
+
+/* Стиль вкладки при наведении */
+QTabBar::tab:hover {
+    background: #e0e0ff; /* Светло-фиолетовый фон при наведении */
+    border-bottom: 2px solid #6200ea; /* Фиолетовое подчёркивание при наведении */
+}
+
+/* Стиль кнопок */
+QPushButton {
+    background-color: #f0f0f0; /* Цвет фона кнопки */
+    border: 1px solid #ccc; /* Граница кнопки */
+    border-radius: 5px; /* Скругление углов */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    font-size: 14px; /* Размер шрифта */
+}
+
+QPushButton:hover {
+    background-color: #e0e0ff; /* Светло-фиолетовый фон при наведении */
+    border-bottom: 2px solid #6200ea; /* Фиолетовое подчёркивание при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #d0d0ff; /* Более тёмный фиолетовый при нажатии */
+}
+
+QLabel {
+    margin: 0px; /* Убираем внешние отступы */
+    padding: 0px; /* Убираем внутренние отступы */
+}
+
+QWidget#main_tab {
+    background-color: rgba(98, 0, 234, 0.03);
+}
+
+QFrame#tab_frame {
+    background-color: white;
+}
+
+/* Стиль для QLabel */
+QLabel {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333; /* Тёмно-серый цвет текста */
+}
+
+/* Стиль для QTextEdit */
+QTextEdit {
+    background-color: #f9f9f9; /* Светло-серый фон */
+    border: 1px solid #ccc; /* Граница */
+    border-radius: 5px; /* Скругление углов */
+    padding: 5px;
+    font-size: 12px;
+}
+
+/* Стиль для QPushButton */
+QPushButton {
+    background-color: #6200ea; /* Фиолетовый фон */
+    color: white; /* Белый текст */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #3700b3; /* Более тёмный фиолетовый при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #bb86fc; /* Светло-фиолетовый при нажатии */
+}
+"""
+        self.setStyleSheet(style)
         self.ui.url_script.setText(data['Url'])
         self.ui.name_form.setText(data['Name_form'])
         self.ui.description_form.setText(data['Desciption_form'])
