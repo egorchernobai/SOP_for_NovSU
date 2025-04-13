@@ -33,19 +33,26 @@ class parser:
                             result["Предметы"][subject].setdefault(
                                 question, []).append(value)
                             answer_index += 1
-
                     for teacher in teachers:
-                        if teacher not in result["Преподаватели"]:
-                            result["Преподаватели"][teacher] = {}
+                        if answers[answer_index].strip() == 'да':
+                            answer_index += 1
 
-                        for question in data1["Questions_for_teachers"]:
-                            if answer_index < len(answers):
-                                value = answers[answer_index].strip()
-                                if value.isdigit():
-                                    value = int(value)
+                            if teacher not in result["Преподаватели"]:
+                                result["Преподаватели"][teacher] = {}
+                            for question in data1["Questions_for_teachers"]:
 
-                                result["Преподаватели"][teacher].setdefault(
-                                    question, []).append(value)
+                                if answer_index < len(answers):
+                                    value = answers[answer_index].strip()
+
+                                    if value.isdigit():
+                                        value = int(value)
+
+                                    result["Преподаватели"][teacher].setdefault(
+                                        question, []).append(value)
+                                    answer_index += 1
+                        else:
+                            answer_index += 1
+                            for question in data1["Questions_for_teachers"]:
                                 answer_index += 1
 
         return result

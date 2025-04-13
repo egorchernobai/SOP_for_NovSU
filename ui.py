@@ -7,6 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtGui import QIcon
 
 
 class Ui_MainWindow(object):
@@ -454,6 +455,7 @@ QPushButton:pressed {
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "SOP for NovSU"))
+        MainWindow.setWindowIcon(QIcon("1.ico"))
         self.label_7.setText(_translate("MainWindow", "CSV Path:"))
         self.teachers.setPlaceholderText(_translate(
             "MainWindow", "\"ФИО 1\", \"ФИО 2\", ..."))
